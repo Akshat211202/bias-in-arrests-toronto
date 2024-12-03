@@ -48,6 +48,8 @@ Booking, the formal process of charging an individual after arrest, determines w
 
 Previous studies on policing in Toronto have reported that individuals from Black, Indigenous, and other minority groups are overrepresented in police actions relative to their population size. However, most of these studies focus on arrest rates or the use of force rather than the probability of being booked. This study seeks to address that gap by analyzing the relationship between ethnicity and booking status.
 
+The study aims to estimate the disparity in arrest rates between racial groups in Toronto, conditioned on demographic and socioeconomic variables such as age, income level, and neighborhood characteristics. Specifically, it seeks to quantify the proportion of arrests attributable to racial representation disparities, holding other factors constant.
+
 The study uses arrest and booking data from 2020 and 2021, applying Bayesian logistic regression to model the likelihood of being booked after arrest. The analysis includes ethnicity and year as predictors. The goal is to determine whether booking practices show evidence of systemic bias or reflect consistent patterns across groups.
 
 The overview of the data set, its preparation and summary statistics are in [@sec-data]. The description of the Bayesian logistic regression model used for analysis, including justification for its use is in [@sec-model]. Presentation and interpretation of the model outputs, highlighting key patterns and trends are in [@sec-results]. Analysis and summary of findings in the context of existing research, limitations of the study and ecommendations for future research are in [@sec-discussion].
