@@ -1,7 +1,8 @@
 ---
-title: "Analyzing Arrest Patterns and Racial Representation in Toronto"
+title: "Assessing Racial Bias in Arrest and Booking Practices in Toronto: Insights and Implications from 2020-2021"
+subtitle: "Black and Indigenous Overrepresentation in Arrests with Stable Booking Probabilities Across Ethnic Groups"
 author: "Akshat Aneja"
-abstract: This paper analyzes arrest data from the Toronto Police Service for the years 2020 and 2021, focusing on the distribution of arrests by ethnic identity, age, and booking status to assess whether systemic bias exists in policing practices. The analysis reveals that, while arrests appear to be driven by objective factors, disparities related to socio-economic status may still exist. These findings provide important insights that can help improve transparency and accountability in policing, contributing to more equitable law enforcement practices.
+abstract: This study examines arrest and booking data from the Toronto Police Service for 2020 and 2021 to explore potential racial disparities in policing practices. While Black and Indigenous individuals were disproportionately represented in arrests, the likelihood of being formally booked after arrest was similar across ethnic groups. These findings suggest that disparities may occur earlier in the law enforcement process rather than at the booking stage. By highlighting these patterns, the study underscores the need for targeted reforms to ensure equity and transparency in policing practices.
 date: today
 date-format: long
 number-sections: true
@@ -48,7 +49,7 @@ Booking, the formal process of charging an individual after arrest, determines w
 
 Previous studies on policing in Toronto have reported that individuals from Black, Indigenous, and other minority groups are overrepresented in police actions relative to their population size. However, most of these studies focus on arrest rates or the use of force rather than the probability of being booked. This study seeks to address that gap by analyzing the relationship between ethnicity and booking status.
 
-The study aims to estimate the disparity in arrest rates between racial groups in Toronto, conditioned on demographic and socioeconomic variables such as age, income level, and neighborhood characteristics. Specifically, it seeks to quantify the proportion of arrests attributable to racial representation disparities, holding other factors constant.
+The study seeks to estimate the relative risk (or odds) of arrest for individuals belonging to specific racial groups compared to a baseline racial group, adjusting for factors such as socioeconomic status, neighborhood characteristics, and crime type. This parameter reflects the proportion of observed disparities that can be attributed to racial representation in the city's population.
 
 The study uses arrest and booking data from 2020 and 2021, applying Bayesian logistic regression to model the likelihood of being booked after arrest. The analysis includes ethnicity and year as predictors. The goal is to determine whether booking practices show evidence of systemic bias or reflect consistent patterns across groups.
 
@@ -170,7 +171,7 @@ Referring to [@tbl-table2], [@tbl-table3] and [@fig-fig1] the data reveals a non
 #| message: false
 #| echo: false
 #| eval: true
-#| fig.cap: "# arrests by Ethnicity in Year 2020 and 2021"
+#| fig.cap: "Number of arrests by Ethnicity in Year 2020 and 2021"
 #| fig.width: 10
 #| fig.height: 6
 #| fig.align: 'center'
@@ -183,7 +184,7 @@ table1_long <- pivot_longer(table1, cols = c("2020", "2021"), names_to = "year",
 ggplot(table1_long, aes(x = perceived_race, y = value, fill = year)) +
   geom_bar(stat = "identity", position = 'dodge') +
   labs(x = "Ethnicity",
-       y = "# Arrests",
+       y = "Number of Arrests",
        fill = "Year") +
   theme_minimal() +
   scale_fill_discrete(labels = c("2020", "2021")) +
@@ -388,13 +389,17 @@ The dataset relied on officer-recorded perceived race and binary booking outcome
 3.  **Use Hierarchical Models**: Regional analyses could identify precinct-level disparities or best practices in booking decisions.
 4.  **Explore Arrest-to-Booking Pipelines**: Investigating disparities across the entire law enforcement process—from arrests to sentencing—would provide a holistic understanding of equity in policing.
 
+\newpage
+
+\appendix
+
 # Appendix
 
 ## Model details {#sec-model-details}
 
 ### Posterior predictive check and comparison of the prior and posterior {#sec-ppc-comparison}
 
-(@fig-ppc) shows posterior predictive check was performed . @fig-ppc illustrates a comparison between posterior distribution simulations and the actual probability of experiencing a custody arrest
+[@fig-ppc] shows a posterior predictive check was performed. It illustrates a comparison between posterior distribution simulations and the actual probability of experiencing a custody arrest
 
 ```{r}
 #| eval: true
@@ -409,31 +414,10 @@ pp_check(model) +
   theme(legend.position = "bottom")
 ```
 
-In addition, using code adapted from @tellingstorieswithdata, a comparison of the prior and posterior was performed (@fig-comparison). @fig-comparison depicts the amounts by which the estimates are modified after considering data [@tellingstorieswithdata].
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-comparison
-#| fig-cap: "Comparison of the prior and posterior"
-
-# The code below was adapted based on Alexander (2023).
-# 
-# posterior_vs_prior(model) +
-#   theme_minimal() +
-#   scale_color_brewer(palette = "Set1") +
-#   theme(legend.position = "none") +
-#   coord_flip()
-```
-
 ### Diagnostics {#sec-diagnostics}
 
-This section assesses whether the `rstanarm` [@citerstanarm] Markov chain Monte Carlo (MCMC) algorithm experienced problems [@tellingstorieswithdata].
+[@fig-trace] shows well-mixed and overlapping chains, indicating good convergence of the Bayesian logistic regression model's Markov Chain Monte Carlo sampling process. This validates the reliability of the posterior estimates reported in the paper, supporting the conclusion that booking probabilities were consistent across ethnic groups and years. However, the wide credibility intervals for some coefficients highlight the need for cautious interpretation, especially for smaller ethnic groups, due to limited data and high variability.
 
-Using code adapted from @tellingstorieswithdata, a trace plot was generated (@fig-trace). @fig-trace illustrates horizontal lines that are seemingly erratic with chain overlap, indicating nothing unusual (based on @tellingstorieswithdata).
- 
 ```{r}
 #| echo: false
 #| eval: true
@@ -445,7 +429,7 @@ Using code adapted from @tellingstorieswithdata, a trace plot was generated (@fi
 plot(model, "trace")
 ```
 
-Moreover, using code adapted from @tellingstorieswithdata, a Rhat plot was created (@fig-rhat). @fig-rhat depicts values near 1 and less than or equal to 1.1, indicating no issues (based on @tellingstorieswithdata).
+[@fig-rhat] demonstrates that all Rhat values are approximately 1.0, which indicates that the Markov Chain Monte Carlo (MCMC) chains have converged well. This suggests that the Bayesian logistic regression model used in the paper is reliable, as the convergence ensures robust and consistent parameter estimation. These results support the validity of the study's findings on arrest and booking probabilities, providing confidence in the statistical inferences drawn from the model.
 
 ```{r}
 #| echo: false
@@ -455,14 +439,13 @@ Moreover, using code adapted from @tellingstorieswithdata, a Rhat plot was creat
 #| label: fig-rhat
 #| fig-cap: "Rhat plot"
 
-# The code below was adapted from Alexander (2023).
-
 plot(model, "rhat")
 ```
 
 ## Credibility intervals {#sec-credibility-intervals}
 
-Using code adapted from @tellingstorieswithdata, @fig-credibility-intervals-all was generated. @fig-credibility-intervals-all illustrates 90\% credibility intervals of all of the predictors of undergoing a custody arrest based on the model from this report.
+
+The credibility intervals in [@fig-credibility-intervals-all] show that most coefficients, including race and year, have intervals crossing zero, indicating no statistically significant effects of these predictors on booking probabilities. This aligns with the paper's findings that booking probabilities were consistent across ethnic groups and years, suggesting limited evidence of systemic bias at the booking stage. However, the wide intervals, particularly for smaller ethnic groups like Indigenous and East/Southeast Asian, reflect data limitations and highlight the need for caution in drawing definitive conclusions.
 
 ```{r}
 #| echo: false
@@ -470,15 +453,13 @@ Using code adapted from @tellingstorieswithdata, @fig-credibility-intervals-all 
 #| message: false
 #| warning: false
 #| label: fig-credibility-intervals-all
-#| fig-cap: "Credibility intervals of all of the custody arrest predictors"
-
-# The code below was adapted from Alexander (2023).
+#| fig-cap: "Credibility Intervals for All Predictors in Booking Analysis"
 
 modelplot(model, conf_level = 0.9) +
   labs(x = "90 percent credibility interval")
 ```
 
-@fig-credibility-intervals-several depicts 90\% credibility intervals of several of the predictors of undergoing a custody arrest. In particular, the American Indian/Alaskan Native and Hawaiian/Pacific Islander predictors were omitted for visual clarity (as compared to @fig-credibility-intervals-all).
+The credibility intervals in [@fig-credibility-intervals-several]  focus on a subset of predictors and show that all intervals overlap with zero, indicating no statistically significant effects of these predictors on booking probabilities. This reinforces the paper's conclusion that booking probabilities are consistent across ethnic groups and between years, with no strong evidence of systemic bias at the booking stage. However, the wide intervals for smaller groups like Indigenous and East/Southeast Asian highlight data limitations and the need for caution in interpreting the results.
 
 ```{r}
 #| echo: false
@@ -486,9 +467,7 @@ modelplot(model, conf_level = 0.9) +
 #| message: false
 #| warning: false
 #| label: fig-credibility-intervals-several
-#| fig-cap: "Credibility intervals of several of the custody arrest predictors"
-
-# Portions of the code below were adapted from Alexander (2023).
+#| fig-cap: "Credibility Intervals for Key Predictors in Booking Analysis"
 
 modelplot(model, conf_level = 0.9, coef_omit = c(5, 8)) +
   labs(x = "90 percent credibility interval")
