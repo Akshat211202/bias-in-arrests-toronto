@@ -1,7 +1,7 @@
 #### Preamble ####
-# Purpose: Downloading and saving the data from OpenData Toronto for Police Race and Identity Based Data Collection: Arrests & Strip Searches
+# Purpose: Downloading the data from OpenData Toronto on Police Race and Identity-Based Data Collection: Arrests and Strip Searches.
 # Author: Akshat Aneja
-# Date: 23 September 2024
+# Date: 3 December 2024
 # Contact: akshat.aneja@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: none

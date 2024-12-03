@@ -1,7 +1,7 @@
 #### Preamble ####
-# Purpose: Downloading and saving the data from OpenData Toronto for Police Race and Identity Based Data Collection: Arrests & Strip Searches
+# Purpose: Testing the analysis data from OpenData Toronto on Police Race and Identity-Based Data Collection: Arrests and Strip Searches.
 # Author: Akshat Aneja
-# Date: 23 September 2024
+# Date: 3 December 2024
 # Contact: akshat.aneja@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: none
@@ -11,8 +11,6 @@
 #### Workspace setup ####
 library(tidyverse)
 
-
-#### Test data ####
 arrest_data <- read.csv(here::here("data/02-analysis_data/analysis_data.csv"))
 
 # 1. Check if 'arrest_year' is numeric
@@ -42,27 +40,22 @@ valid_arrest_year_values <- all(arrest_data$arrest_year >= 2020 & arrest_data$ar
 # 9. Validate that 'search_reason' values are binary (0 or 1)
 valid_search_reason_values <- all(arrest_data$search_reason >= 0 & arrest_data$search_reason <= 1)
 
-
-
-# 12. Check for missing values in the dataset
+# 10. Check for missing values in the dataset
 no_missing_values <- all(complete.cases(arrest_data))
 
-
-
-
-# 15. Validate 'booked' column as logical or numeric
+# 11. Validate 'booked' column as logical or numeric
 booked_logical <- is.logical(arrest_data$booked) || is.numeric(arrest_data$booked)
 
-# 16. Validate 'search_reason' column as logical or numeric
+# 12. Validate 'search_reason' column as logical or numeric
 search_reason_logical <- is.logical(arrest_data$search_reason) || is.numeric(arrest_data$search_reason)
 
-# 17. Validate that 'arrest_year' does not exceed the current year
+# 13. Validate that 'arrest_year' does not exceed the current year
 valid_years <- all(arrest_data$arrest_year <= as.numeric(format(Sys.Date(), "%Y")))
 
-# 18. Validate the dataset is not empty
+# 14. Validate the dataset is not empty
 non_empty_dataset <- nrow(arrest_data) > 0
 
-# 19. Validate that 'arrest_year' values are above 1900
+# 15. Validate that 'arrest_year' values are above 1900
 valid_arrest_year <- all(arrest_data$arrest_year > 1900)
 
 # Check all conditions

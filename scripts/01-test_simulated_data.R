@@ -1,7 +1,7 @@
 #### Preamble ####
-# Purpose: Downloading and saving the data from OpenData Toronto for Police Race and Identity Based Data Collection: Arrests & Strip Searches
+# Purpose: Testing the simulated data from OpenData Toronto on Police Race and Identity-Based Data Collection: Arrests and Strip Searches.
 # Author: Akshat Aneja
-# Date: 1 December 2024
+# Date: 3 December 2024
 # Contact: akshat.aneja@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: none
@@ -15,8 +15,6 @@ library(testthat)
 
 analysis_data <- read_csv("data/00-simulated_data/simulated_data.csv", show_col_types = FALSE)
 
-
-# Define the tests
 
 # Test 1: Dataset is a data frame
 test_that("Dataset is a data frame", {
@@ -75,48 +73,47 @@ test_that("No missing values in the dataset", {
   expect_true(all(!is.na(simulated_data)))
 })
 
-
-# Test 12: `arrest_year` is numeric
+# Test 11: `arrest_year` is numeric
 test_that("`arrest_year` is numeric", {
   expect_true(is.numeric(simulated_data$arrest_year))
 })
 
-# Test 13: `age_group` is a factor or character
+# Test 12: `age_group` is a factor or character
 test_that("`age_group` is a factor or character", {
   expect_true(is.character(simulated_data$age_group) || is.factor(simulated_data$age_group))
 })
 
-# Test 14: `booked` is numeric
+# Test 13: `booked` is numeric
 test_that("`booked` is numeric", {
   expect_true(is.numeric(simulated_data$booked))
 })
 
-# Test 15: `search_reason` is numeric
+# Test 14: `search_reason` is numeric
 test_that("`search_reason` is numeric", {
   expect_true(is.numeric(simulated_data$search_reason))
 })
 
-# Test 16: `perceived_race` is a factor or character
+# Test 15: `perceived_race` is a factor or character
 test_that("`perceived_race` is a factor or character", {
   expect_true(is.character(simulated_data$perceived_race) || is.factor(simulated_data$perceived_race))
 })
 
-# Test 17: `minor` is a factor or character
+# Test 16: `minor` is a factor or character
 test_that("`minor` is a factor or character", {
   expect_true(is.character(simulated_data$minor) || is.factor(simulated_data$minor))
 })
 
-# Test 18: `booked` contains at least one 0 and one 1
+# Test 17: `booked` contains at least one 0 and one 1
 test_that("`booked` contains at least one 0 and one 1", {
   expect_true(all(c(0, 1) %in% simulated_data$booked))
 })
 
-# Test 19: `search_reason` contains at least one 0 and one 1
+# Test 18: `search_reason` contains at least one 0 and one 1
 test_that("`search_reason` contains at least one 0 and one 1", {
   expect_true(all(c(0, 1) %in% simulated_data$search_reason))
 })
 
-# Test 20: Proportions of `minor` categories are valid
+# Test 19: Proportions of `minor` categories are valid
 test_that("Proportions of `minor` categories are valid", {
   minor_proportions <- table(simulated_data$minor) / nrow(simulated_data)
   expect_true(sum(minor_proportions) == 1)

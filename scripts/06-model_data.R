@@ -1,11 +1,12 @@
 #### Preamble ####
-# Purpose: Models... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Modelling the data from OpenData Toronto on Police Race and Identity-Based Data Collection: Arrests and Strip Searches.
+# Author: Akshat Aneja
+# Date: 3 December 2024
+# Contact: akshat.aneja@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: none
+# Datasets: https://open.toronto.ca/dataset/police-race-and-identity-based-data-collection-arrests-strip-searches/
+
 
 
 #### Workspace setup ####
