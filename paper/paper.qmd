@@ -7,7 +7,8 @@ date-format: long
 number-sections: true
 format: pdf
 toc: true
-thanks: "Code and data supporting this analysis is available at: https://github.com/Akshat211202/Analysis-of-bias-in-arrests/"
+thanks: "Code and data supporting this analysis is available at: https://github.com/Akshat211202/bias-in-arrests-toronto"
+
 bibliography: references.bib
 ---
 
@@ -275,16 +276,16 @@ This section describes the statistical model used to analyze the likelihood of a
 \begin{align}
 y_i|\pi_i &\sim \mbox{Bern}(\pi_i) \label{eq1} \\
 \mbox{logit}(\pi_i) &= \beta_0 + \beta_1 \times \mbox{race}_i + \beta_2 \times \mbox{year}_i \label{eq2} \\
-\beta_0 &\sim \mbox{Normal}(0, 5) \label{eq3} \\
-\beta_1 &\sim \mbox{Normal}(0, 5) \label{eq4} \\
-\beta_2 &\sim \mbox{Normal}(0, 5) \label{eq5}
+\beta_0 &\sim \mbox{Normal}(0, 2.5) \label{eq3} \\
+\beta_1 &\sim \mbox{Normal}(0, 2.5) \label{eq4} \\
+\beta_2 &\sim \mbox{Normal}(0, 2.5) \label{eq5}
 \end{align}
 
-The Bayesian logistic regression model is represented by Equations (\ref{eq1}), (\ref{eq2}), (\ref{eq3}), (\ref{eq4}), and (\ref{eq5}). In these equations: - $y_i$ represents the booking status of the (i)-th individual (0 for not booked and 1 for booked). - $\pi_i$ represents the probability of the (i)-th individual being booked after arrest. - (\beta\_0) represents the intercept, or the log-odds of being booked for a White individual in the year 2020 (reference group). - (\beta\_1) represents how much the log-odds of being booked change on average depending on the race of the individual (relative to a White individual). - (\text{race}\_i) represents the race of the (i)-th individual (categorical predictor with levels: White, Black, Indigenous, South Asian, East/Southeast Asian, Middle Eastern, Latino, and Unknown/Legacy). - (\beta\_2) represents how much the log-odds of being booked change on average depending on the year (relative to 2020). - (\text{year}\_i) represents the year of the (i)-th individual’s arrest (binary: 0 for 2020, 1 for 2021).
+The Bayesian logistic regression model is represented by Equations (\ref{eq1}), (\ref{eq2}), (\ref{eq3}), (\ref{eq4}), and (\ref{eq5}). In these equations: $y_i$ represents the booking status of the $i^{th}$ individual (0 for not booked and 1 for booked). $\pi_i$ represents the probability of the $i^{th}$ individual being booked after arrest. $\beta_0$ represents the intercept, or the log-odds of being booked for a White individual in the year 2020 (reference group). $\beta_1$ represents how much the log-odds of being booked change on average depending on the race of the individual (relative to a White individual). $\text{race}_i$ represents the race of the $i^{th}$ individual (categorical predictor with levels: White, Black, Indigenous, South Asian, East/Southeast Asian, Middle Eastern, Latino, and Unknown/Legacy). $\beta_2$ represents how much the log-odds of being booked change on average depending on the year (relative to 2020). $\text{year}_i$ represents the year of the $i^{th}$ individual’s arrest (binary: 0 for 2020, 1 for 2021).
 
-The priors for (\beta\_0), (\beta\_1), and (\beta\_2) are weakly informative normal distributions with a mean of 0 and a standard deviation of 5. These priors allow for flexibility in parameter estimation while regularizing extreme values.
+The priors for $\beta_0$, $\beta_1$, and $\beta_2$ are weakly informative normal distributions with a mean of 0 and a standard deviation of 5. These priors allow for flexibility in parameter estimation while regularizing extreme values.
 
-The (\beta) coefficients are important because they provide insight into how an individual’s race and the year of arrest influence the likelihood of being booked after arrest.
+The $\beta$ coefficients are important because they provide insight into how an individual’s race and the year of arrest influence the likelihood of being booked after arrest.
 
 ## Model Justification
 
