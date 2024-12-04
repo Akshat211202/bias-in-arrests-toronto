@@ -236,14 +236,6 @@ ggplot(table2_long, aes(x = perceived_race, y = value, fill = factor(booked))) +
   theme(axis.text.x = element_text(angle = 30, hjust = 1))
 ```
 
-## Number of Arrests by Age Group for the year 2020-2021 {#sec-group}
-
-An analysis of arrests by age groups is essential to understanding the demographic patterns of law enforcement activity. [@fig-fig3] illustrates the distribution of arrests across different age groups for the years 2020 and 2021. The age groups included in the dataset are Under 17, 18 to 24 years, 25 to 34 years, 35 to 44 years, 45 to 54 years, 55 to 64 years, and 65 years and over.
-
-The data shows a non-uniform distribution of arrests across age groups, with 25 to 34 and 35 to 44 age brackets accounting for the highest number of arrests in both 2020 and 2021. However, there is a notable decrease in the number of arrests for these age groups of 2020 to 2021 which indicates that there may be a possible shift in law enforcement activity.
-
-In contrast, the other age groups experienced an increase in arrests during the same period. In particular, the number of arrests for individuals aged 18 to 24 and 45 to 54 saw an upward trend from 2020 to 2021.
-
 ```{r}
 #| warning: false
 #| message: false
@@ -266,9 +258,18 @@ ggplot(table3_long, aes(x = perceived_race, y = value, fill = factor(age_group))
        y = "Number of People",
        fill = "Year") +
   theme_minimal() +
+  scale_fill_brewer(palette = "Set3") +
   theme(legend.position = "bottom") + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+## Number of Arrests by Age Group for the year 2020-2021 {#sec-group}
+
+An analysis of arrests by age groups is essential to understanding the demographic patterns of law enforcement activity. [@fig-fig3] illustrates the distribution of arrests across different age groups for the years 2020 and 2021. The age groups included in the dataset are Under 17, 18 to 24 years, 25 to 34 years, 35 to 44 years, 45 to 54 years, 55 to 64 years, and 65 years and over.
+
+The data shows a non-uniform distribution of arrests across age groups, with 25 to 34 and 35 to 44 age brackets accounting for the highest number of arrests in both 2020 and 2021. However, there is a notable decrease in the number of arrests for these age groups of 2020 to 2021 which indicates that there may be a possible shift in law enforcement activity.
+
+In contrast, the other age groups experienced an increase in arrests during the same period. In particular, the number of arrests for individuals aged 18 to 24 and 45 to 54 saw an upward trend from 2020 to 2021.
 
 # Model {#sec-model}
 
@@ -289,6 +290,10 @@ The Bayesian logistic regression model is represented by Equations (\ref{eq1}), 
 The priors for $\beta_0$, $\beta_1$, and $\beta_2$ are weakly informative normal distributions with a mean of 0 and a standard deviation of 5. These priors allow for flexibility in parameter estimation while regularizing extreme values.
 
 The $\beta$ coefficients are important because they provide understanding into how an individual’s race and the year of arrest influence the likelihood of being booked after arrest.
+
+The `rstanarm` package [@citerstanarm] and the R programming language [@citeR] were employed in order to run this model.
+
+The `modelsummary` package [@citeModelsummary] was used to create [@tbl-model], [@fig-credibility-intervals-all], and [@fig-credibility-intervals-several.]
 
 ## Model Justification
 
@@ -399,7 +404,7 @@ The dataset relied on officer-recorded perceived race and binary booking outcome
 
 ### Posterior predictive check and comparison of the prior and posterior {#sec-ppc-comparison}
 
-[@fig-ppc] shows a posterior predictive check was performed. It illustrates a comparison between posterior distribution simulations and the actual probability of experiencing a custody arrest
+Using code adapted from [@citeAlexander] a posterior predictive check was performed. [@fig-ppc] illustrates a comparison between posterior distribution simulations and the actual probability of experiencing a custody arrest
 
 ```{r}
 #| eval: true
