@@ -1,8 +1,8 @@
 ---
-title: "Assessing Racial Bias in Arrest and Booking Practices in Toronto: Insights and Implications from 2020-2021"
+title: "Assessing Racial Bias in Arrest and Booking Practices in Toronto from 2020-2021"
 subtitle: "Black and Indigenous Overrepresentation in Arrests with Stable Booking Probabilities Across Ethnic Groups"
 author: "Akshat Aneja"
-abstract: This study examines arrest and booking data from the Toronto Police Service for 2020 and 2021 to explore potential racial disparities in policing practices. While Black and Indigenous individuals were disproportionately represented in arrests, the likelihood of being formally booked after arrest was similar across ethnic groups. These findings suggest that disparities may occur earlier in the law enforcement process rather than at the booking stage. By highlighting these patterns, the study underscores the need for targeted reforms to ensure equity and transparency in policing practices.
+abstract: This study examines arrest and booking data from the Toronto Police Service for 2020 and 2021 to analyze potential racial disparities in policing practices. While Black and Indigenous individuals were disproportionately represented in arrests, the likelihood of being formally booked after arrest was similar across ethnic groups. These findings suggest that disparities may occur earlier in the law enforcement process rather than at the booking stage. By highlighting these patterns, the study underscores the need for targeted reforms to ensure equity and transparency in policing practices.
 date: today
 date-format: long
 number-sections: true
@@ -43,9 +43,9 @@ model <- readRDS(here::here("models/racial_model.rds"))
 
 # Introduction
 
-This study examines disparities in booking probabilities across ethnic groups in Toronto during 2020 and 2021. While discussions about racial bias in policing often focus on arrest rates or use of force, booking decisions represent another critical stage in law enforcement processes that can reflect systemic bias.
+This study examines disparities in booking probabilities across ethnic groups in Toronto during 2020 and 2021. While discussions about racial bias in policing often focus on arrest rates or use of force, booking decisions represent another important stage in law enforcement processes that can reflect systemic bias.
 
-Booking, the formal process of charging an individual after arrest, determines whether someone enters the criminal justice system. Examining booking probabilities provides insight into whether disparities exist in how different racial groups are treated after an arrest. This analysis focuses on identifying patterns in booking decisions for various ethnic groups and whether these patterns changed over the two years.
+Booking, the formal process of charging an individual after arrest, determines whether someone enters the criminal justice system. Examining booking probabilities provides understanding into whether disparities exist in how different racial groups are treated after an arrest. This analysis focuses on identifying patterns in booking decisions for various ethnic groups and whether these patterns changed over the two years.
 
 Previous studies on policing in Toronto have reported that individuals from Black, Indigenous, and other minority groups are overrepresented in police actions relative to their population size. However, most of these studies focus on arrest rates or the use of force rather than the probability of being booked. This study seeks to address that gap by analyzing the relationship between ethnicity and booking status.
 
@@ -55,7 +55,7 @@ The study uses arrest and booking data from 2020 and 2021, applying Bayesian log
 
 The overview of the data set, its preparation and summary statistics are in [@sec-data]. The description of the Bayesian logistic regression model used for analysis, including justification for its use is in [@sec-model]. Presentation and interpretation of the model outputs, highlighting key patterns and trends are in [@sec-results]. Analysis and summary of findings in the context of existing research, limitations of the study and ecommendations for future research are in [@sec-discussion].
 
-The findings aim to provide objective evidence that can inform discussions about equity in policing. Identifying disparities in booking probabilities can help highlight areas where procedural changes may be necessary to ensure fair treatment for all groups. This study also explores how booking practices have evolved between 2020 and 2021 to identify potential progress or emerging trends.
+The findings aim to provide objective evidence that can inform discussions about equity in policing. Identifying disparities in booking probabilities can help highlight areas where procedural changes may be necessary to ensure fair treatment for all groups. This study also analyzes how booking practices have evolved between 2020 and 2021 to identify potential progress or emerging trends.
 
 # Data {#sec-data}
 
@@ -75,9 +75,9 @@ The analysis is conducted using the arrest data as the primary estimator. Arrest
 
 ## Total number of arrests by age group for the year 2020 and 2021 {#sec-Age}
 
-It is crucial to analyze the distribution of arrests across different age groups to understand potential patterns and disparities. [@tbl-table1] presents a summary of arrest counts for various ethnic groups across all age categories in 2020 and 2021. The age groups included in the dataset are: Under 17, 18 to 24 years, 25 to 34 years, 35 to 44 years, 45 to 54 years, 55 to 64 years, and 65 years and over.
+It is important to analyze the distribution of arrests across different age groups to understand potential patterns and disparities. [@tbl-table1] presents a summary of arrest counts for various ethnic groups across all age categories in 2020 and 2021. The age groups included in the dataset are: Under 17, 18 to 24 years, 25 to 34 years, 35 to 44 years, 45 to 54 years, 55 to 64 years, and 65 years and over.
 
-Given the complexity and extensive nature of the dataset, which involves nine age groups across eight ethnicities, summarizing the entire dataset in a comprehensible manner is challenging. To address this and ensure clarity, we have selected a subset of the data focusing specifically on individuals aged 25 to 34 years. This group was chosen as it represents a significant proportion of the data and allows for a more straightforward comparison of arrest trends across ethnic groups while avoiding information overload. By narrowing the scope, the analysis becomes more manageable and the insights more focused.
+Given the complexity and extensive nature of the dataset, which involves nine age groups across eight ethnicities, summarizing the entire dataset in a thorough manner is challenging. To address this and ensure clarity, we have selected a subset of the data focusing specifically on individuals aged 25 to 34 years. This group was chosen as it represents a significant proportion of the data and allows for a more straightforward comparison of arrest trends across ethnic groups while avoiding information overload. By narrowing the scope, the analysis becomes more manageable and the findings more focused.
 
 ```{r}
 #| warning: false
@@ -158,13 +158,13 @@ kable(table2,
 
 ```
 
-It is important to note that the OpenDataToronto [@rOpenDataToronto] provides population distribution data by ethnicity. However, due to the size and diversity of Toronto and its numerous wards, it has been challenging to cross-verify this data with crime rate statistics in a comprehensive manner. Further, a more detailed analysis could be conducted by comparing specific ethnic groups directly.
+It is important to note that the OpenDataToronto [@rOpenDataToronto] provides population distribution data by ethnicity. However, due to the size and diversity of Toronto and its numerous wards, it has been challenging to cross-verify this data with crime rate statistics in a thorough manner. Further, a more detailed analysis could be conducted by comparing specific ethnic groups directly.
 
 Now that the data has been cleaned, we can begin to analyze the data. The following section will provide a summary of the data, and the trends that emerge from the data. [@fig-fig1], [@fig-fig2], and [@fig-fig3], was created using `ggplot` [@rGgplot2], displays the information that can be used as compare the trends as described above.
 
 ## Total Arrests in 2020-2021
 
-Referring to [@tbl-table2], [@tbl-table3] and [@fig-fig1] the data reveals a non-uniform distribution of arrests across ethnic groups, with the Black and White populations showing the highest numbers of arrests in both 2020 and 2021. Additionally, the data indicates a decline in arrests for these two ethnic groups from 2020 to 2021. In contrast, arrests for other ethnic groups, such as South Asian, East Asian, and Indigenous populations, increased over the same period. These opposing trends highlight the divergent patterns of arrest across different ethnic groups during this time.
+Referring to [@tbl-table2], [@tbl-table3] and [@fig-fig1] the data shows a non-uniform distribution of arrests across ethnic groups, with the Black and White populations showing the highest numbers of arrests in both 2020 and 2021. Additionally, the data indicates a decline in arrests for these two ethnic groups from 2020 to 2021. In contrast, arrests for other ethnic groups, such as South Asian, East Asian, and Indigenous populations, increased over the same period. These opposing trends highlight the divergent patterns of arrest across different ethnic groups during this time.
 
 ```{r}
 #| warning: false
@@ -240,7 +240,7 @@ ggplot(table2_long, aes(x = perceived_race, y = value, fill = factor(booked))) +
 
 An analysis of arrests by age groups is essential to understanding the demographic patterns of law enforcement activity. [@fig-fig3] illustrates the distribution of arrests across different age groups for the years 2020 and 2021. The age groups included in the dataset are Under 17, 18 to 24 years, 25 to 34 years, 35 to 44 years, 45 to 54 years, 55 to 64 years, and 65 years and over.
 
-The data reveals a non-uniform distribution of arrests across age groups, with 25 to 34 and 35 to 44 age brackets accounting for the highest number of arrests in both 2020 and 2021. However, there is a notable decrease in the number of arrests for these age groups of 2020 to 2021 which indicates that there may be a possible shift in law enforcement activity.
+The data shows a non-uniform distribution of arrests across age groups, with 25 to 34 and 35 to 44 age brackets accounting for the highest number of arrests in both 2020 and 2021. However, there is a notable decrease in the number of arrests for these age groups of 2020 to 2021 which indicates that there may be a possible shift in law enforcement activity.
 
 In contrast, the other age groups experienced an increase in arrests during the same period. In particular, the number of arrests for individuals aged 18 to 24 and 45 to 54 saw an upward trend from 2020 to 2021.
 
@@ -288,7 +288,7 @@ The Bayesian logistic regression model is represented by Equations (\ref{eq1}), 
 
 The priors for $\beta_0$, $\beta_1$, and $\beta_2$ are weakly informative normal distributions with a mean of 0 and a standard deviation of 5. These priors allow for flexibility in parameter estimation while regularizing extreme values.
 
-The $\beta$ coefficients are important because they provide insight into how an individual’s race and the year of arrest influence the likelihood of being booked after arrest.
+The $\beta$ coefficients are important because they provide understanding into how an individual’s race and the year of arrest influence the likelihood of being booked after arrest.
 
 ## Model Justification
 
@@ -304,7 +304,7 @@ Linear regression was not used because it is unsuitable for binary outcomes, as 
 
 Frequentist logistic regression does not account for prior knowledge or explicitly quantify uncertainty in parameter estimates. Given the small sample sizes for some groups, a Bayesian approach is more robust and transparent.
 
-The model was designed to provide insights into: Whether racial groups differ in booking probabilities after arrest. Whether booking probabilities changed between 2020 and 2021. The Bayesian framework ensures these insights are backed by a robust statistical foundation that accounts for both data-driven and prior uncertainties.
+The model was designed to provide understanding about whether racial groups differ in booking probabilities after arrest. Whether booking probabilities changed between 2020 and 2021. The Bayesian framework ensures these findings are backed by a robust statistical foundation that accounts for both evidence-based and prior uncertainties.
 
 This justification underscores the appropriateness of the Bayesian logistic regression model for analyzing disparities in booking probabilities while addressing potential limitations of the data and context. It aligns the methodology with the study’s objectives, ensuring clarity and rigor in the analysis.
 
@@ -352,15 +352,15 @@ Booking probabilities ranged consistently between 50% and 55% for most ethnic gr
 
 Booking probabilities were stable across years, with minor declines observed for certain groups (e.g., White, Black) and slight increases for others (e.g., Indigenous, Middle Eastern). These trends were not statistically significant within the model. Uncertainty in Estimates:
 
-Wide credibility intervals for racial group coefficients suggest that data limitations (e.g., small sample sizes for some groups) contributed to high variability in results. This highlights the need for more comprehensive data to draw robust conclusions.
+Wide credibility intervals for racial group coefficients suggest that data limitations (e.g., small sample sizes for some groups) contributed to high variability in results. This highlights the need for more thorough data to draw robust conclusions.
 
 # Discussion {#sec-discussion}
 
-This report analyzed arrest and booking data for Toronto during 2020 and 2021 using a Bayesian logistic regression model to examine predictors of booking probabilities. The predictors in this analysis were ethnicity and year. The results provide insights into equity in booking practices and the implications of these findings for law enforcement policies.
+This report analyzed arrest and booking data for Toronto during 2020 and 2021 using a Bayesian logistic regression model to examine predictors of booking probabilities. The predictors in this analysis were ethnicity and year. The results provide a good understanding into equity in booking practices and the implications of these findings for law enforcement policies.
 
 ## Black and Indigenous individuals are overrepresented in arrests but not in booking probabilities
 
-Analysis of arrest data revealed that Black and Indigenous individuals were overrepresented in arrests relative to their share of the population, consistent with prior findings from the Toronto Police Service and other studies on racial disparities in policing. However, this study focused on booking probabilities after arrest and found no significant differences in booking outcomes across ethnic groups after controlling for year.
+Analysis of arrest data showed that Black and Indigenous individuals were overrepresented in arrests relative to their share of the population, consistent with prior findings from the Toronto Police Service and other studies on racial disparities in policing. However, this study focused on booking probabilities after arrest and found no significant differences in booking outcomes across ethnic groups after controlling for year.
 
 The wide credibility intervals in the Bayesian model, especially for smaller groups like Indigenous and East/Southeast Asian individuals, reflect high uncertainty. While this limits definitive conclusions about booking disparities, it suggests that any disparities observed in arrests may not persist at the booking stage. However, data limitations and measurement biases—such as officer-recorded perceived race—may influence these findings.
 
@@ -374,20 +374,20 @@ The stability in booking probabilities aligns with the broader literature on pro
 
 The absence of strong evidence for racial disparities in booking probabilities is encouraging for equitable law enforcement practices at this stage. However, the high uncertainty in estimates for smaller groups highlights the need for continued monitoring and data improvements. Policymakers should focus on enhancing data collection practices and transparency in booking decisions while considering potential disparities earlier (e.g., arrests) or later (e.g., sentencing) in the justice system.
 
-Communicating these findings is critical for informed public discourse. While arrest data often highlights disparities, the results suggest that booking probabilities may not exhibit the same biases. This distinction can help guide discussions on police reform and support targeted interventions to address inequities at all stages of law enforcement decision-making.
+Communicating these findings is essential for informed public discourse. While arrest data often highlights disparities, the results suggest that booking probabilities may not exhibit the same biases. This distinction can help guide discussions on police reform and support targeted interventions to address inequities at all stages of law enforcement decision-making.
 
 ## Limitations and future research
 
 ### Data Limitations
 
-The dataset relied on officer-recorded perceived race and binary booking outcomes, omitting variables such as offense type, search status, or socio-economic indicators. These omissions may obscure nuanced influences on booking decisions and contribute to the high uncertainty in coefficient estimates for smaller groups.
+The dataset relied on officer-recorded perceived race and binary booking outcomes, omitting variables such as offense type, search status, or socio-economic indicators. These omissions may obscure specific influences on booking decisions and contribute to the high uncertainty in coefficient estimates for smaller groups.
 
 ## Future Research
 
-1.  **Incorporate Contextual Variables**: Adding variables like offense type or search status would provide a more comprehensive view of factors influencing booking probabilities.
+1.  **Incorporate Contextual Variables**: Adding variables like offense type or search status would provide a more thorough view of factors influencing booking probabilities.
 2.  **Examine Interaction Effects**: Analyzing interactions between race and year could highlight evolving trends for specific groups.
 3.  **Use Hierarchical Models**: Regional analyses could identify precinct-level disparities or best practices in booking decisions.
-4.  **Explore Arrest-to-Booking Pipelines**: Investigating disparities across the entire law enforcement process—from arrests to sentencing—would provide a holistic understanding of equity in policing.
+4.  **Analyze Arrest-to-Booking Pipelines**: Investigating disparities across the entire law enforcement process—from arrests to sentencing—would provide a holistic understanding of equity in policing.
 
 \newpage
 
