@@ -1,4 +1,4 @@
-# Assessing Racial Bias in Arrest and Booking Practices in Toronto: Insights and Implications from 2020-2021
+# Assessing Racial Bias in Arrest and Booking Practices in Toronto from 2020-2021
 
 ## Overview
 
